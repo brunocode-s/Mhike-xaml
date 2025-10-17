@@ -1,0 +1,83 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MHikePrototype.MainPage"
+             Title="MHike Dashboard">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20"
+                             Spacing="15">
+
+            <!-- Hero Section -->
+            <Frame BackgroundColor="#4CAF50"
+                   CornerRadius="20"
+                   Padding="15">
+                <VerticalStackLayout>
+                    <Label Text="Welcome to MHike!"
+                           FontSize="24"
+                           TextColor="White"/>
+                    <Label Text="Discover new trails and log your hikes"
+                           FontSize="16"
+                           TextColor="White"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Quick Stats -->
+            <HorizontalStackLayout Spacing="10">
+                <Frame BackgroundColor="LightGray"
+                       CornerRadius="15"
+                       Padding="10"
+                       HorizontalOptions="FillAndExpand">
+                    <VerticalStackLayout HorizontalOptions="Center"
+                                         VerticalOptions="Center">
+                        <Label x:Name="TotalHikesLabel"
+                               Text="0"
+                               FontSize="20"
+                               FontAttributes="Bold"/>
+                        <Label Text="Hikes"/>
+                    </VerticalStackLayout>
+                </Frame>
+                <Frame BackgroundColor="LightGray"
+                       CornerRadius="15"
+                       Padding="10"
+                       HorizontalOptions="FillAndExpand">
+                    <VerticalStackLayout HorizontalOptions="Center"
+                                         VerticalOptions="Center">
+                        <Label x:Name="TotalDistanceLabel"
+                               Text="0 km"
+                               FontSize="20"
+                               FontAttributes="Bold"/>
+                        <Label Text="Distance"/>
+                    </VerticalStackLayout>
+                </Frame>
+            </HorizontalStackLayout>
+
+            <!-- Quick Actions -->
+            <Button Text="Add Hike"
+                    Clicked="OnAddHikeClicked"/>
+            <Button Text="View Hikes"
+                    Clicked="OnViewHikesClicked"/>
+            <Button Text="Settings"
+                    Clicked="OnSettingsClicked"/>
+
+            <!-- Recent Hikes -->
+            <Label Text="Recent Hikes"
+                   FontSize="20"
+                   FontAttributes="Bold"/>
+            <CollectionView x:Name="RecentHikesCollection"
+                            HeightRequest="200">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame CornerRadius="10"
+                               Padding="10"
+                               Margin="5"
+                               BackgroundColor="LightGray">
+                            <Label Text="{Binding Name}"/>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

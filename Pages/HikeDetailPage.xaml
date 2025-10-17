@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MHikePrototype.Pages.HikeDetailPage"
+             Title="Hike Detail">
+    <ScrollView>
+        <VerticalStackLayout Padding="20"
+                             Spacing="10">
+            <Label x:Name="LblName"
+                   FontAttributes="Bold"
+                   FontSize="20"/>
+            <Label x:Name="LblMeta"/>
+            <Label x:Name="LblDesc"/>
+            <Button Text="Add Observation"
+                    Clicked="OnAddObsClicked"/>
+            <CollectionView x:Name="ObsCollection">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="5"
+                               Padding="5">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding ObservationText}"/>
+                                <Label Text="{Binding ObservedAtIso}"/>
+                                <Label Text="{Binding Comments}"/>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

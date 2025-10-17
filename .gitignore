@@ -1,0 +1,28 @@
+# Build and user files
+bin/
+obj/
+*.user
+*.suo
+*.userprefs
+*.db
+*.dll
+*.exe
+*.pdb
+
+# MAUI-specific
+*.apk
+*.aab
+*.app
+*.ipa
+*.xcworkspace/
+*.xcodeproj/
+*.xcuserstate
+*.xcuserdata/
+
+# IDE files
+.vs/
+.idea/
+.DS_Store
+
+# User secrets
+secrets.json
