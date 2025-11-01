@@ -1,8 +1,10 @@
 ﻿using MHikePrototype.Data;
+using MHikePrototype.Pages;
 using MHikePrototype.Models;
 using System;
 using System.IO;
 using System.Linq;
+using System.Diagnostics;
 
 namespace MHikePrototype
 {
@@ -42,23 +44,62 @@ namespace MHikePrototype
 
         private async void OnAddHikeClicked(object sender, EventArgs e)
         {
-            // Navigate to AddHikePage
-            await Navigation.PushAsync(new Pages.AddHikePage(dbService));
+            try
+            {
+                Debug.WriteLine("========================================");
+                Debug.WriteLine("Button clicked!");
+                Debug.WriteLine($"Navigating to: {nameof(AddHikePage)}");
+                Debug.WriteLine($"Shell.Current is null: {Shell.Current == null}");
+
+                await Shell.Current.GoToAsync(nameof(AddHikePage));
+
+                Debug.WriteLine("Navigation completed successfully!");
+                Debug.WriteLine("========================================");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("========================================");
+                Debug.WriteLine($"ERROR during navigation: {ex.Message}");
+                Debug.WriteLine($"Exception type: {ex.GetType().Name}");
+                Debug.WriteLine($"Stack trace: {ex.StackTrace}");
+                if (ex.InnerException != null)
+                {
+                    Debug.WriteLine($"Inner exception: {ex.InnerException.Message}");
+                }
+                Debug.WriteLine("========================================");
+
+                await DisplayAlert("Navigation Error", $"{ex.Message}", "OK");
+            }
         }
 
         private async void OnViewHikesClicked(object sender, EventArgs e)
         {
-            // Navigate to HikeListPage
-            await Navigation.PushAsync(new Pages.HikeListPage(dbService));
+            try
+            {
+                Debug.WriteLine($"Navigating to: {nameof(HikeListPage)}");
+                await Shell.Current.GoToAsync(nameof(HikeListPage));
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"ERROR navigating to HikeListPage: {ex.Message}");
+                await DisplayAlert("Navigation Error", ex.Message, "OK");
+            }
         }
 
         private async void OnSettingsClicked(object sender, EventArgs e)
         {
-            // Navigate to SettingsPage
-            await Navigation.PushAsync(new Pages.SettingsPage());
+            try
+            {
+                Debug.WriteLine($"Navigating to: {nameof(SettingsPage)}");
+                await Shell.Current.GoToAsync(nameof(SettingsPage));
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"ERROR navigating to SettingsPage: {ex.Message}");
+                await DisplayAlert("Navigation Error", ex.Message, "OK");
+            }
         }
 
-        // Optional: Refresh recent hikes when the page appears
         protected override void OnAppearing()
         {
             base.OnAppearing();

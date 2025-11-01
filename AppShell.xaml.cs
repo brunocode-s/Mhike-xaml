@@ -1,9 +1,16 @@
-﻿namespace MHikePrototype;
+﻿using MHikePrototype.Pages;
 
-public partial class AppShell : Shell
+namespace MHikePrototype
 {
-	public AppShell()
+	public partial class AppShell : Shell
 	{
-		InitializeComponent();
+		public AppShell()
+		{
+			InitializeComponent();
+
+			Routing.RegisterRoute(nameof(AddHikePage), typeof(AddHikePage));
+			Routing.RegisterRoute(nameof(HikeListPage), typeof(HikeListPage));
+			Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
+		}
 	}
 }

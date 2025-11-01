@@ -1,15 +1,15 @@
-﻿namespace MHikePrototype;
-
-public partial class App : Application
+﻿namespace MHikePrototype
 {
-	public App()
+	public partial class App : Application
 	{
-		InitializeComponent();
-	}
+		public App()
+		{
+			InitializeComponent();
+		}
 
-	// Override CreateWindow instead of setting MainPage
-	protected override Window CreateWindow(IActivationState activationState)
-	{
-		return new Window(new AppShell());
+		protected override Window CreateWindow(IActivationState? activationState)
+		{
+			return new Window(new AppShell());
+		}
 	}
 }

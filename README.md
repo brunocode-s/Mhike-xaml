@@ -55,28 +55,28 @@ Observation model stores notes for each hike.
 Project Structure
 MHikePrototype/
 │
-├── App.xaml                 # App-level resources and styles
-├── App.xaml.cs              # App initialization, sets MainPage to AppShell
+├── App.xaml # App-level resources and styles
+├── App.xaml.cs # App initialization, sets MainPage to AppShell
 │
-├── MainPage.xaml            # Dashboard UI
-├── MainPage.xaml.cs         # Dashboard logic, navigation, load recent hikes
+├── MainPage.xaml # Dashboard UI
+├── MainPage.xaml.cs # Dashboard logic, navigation, load recent hikes
 │
 ├── Pages/
-│   ├── AddHikePage.xaml     # Add Hike form UI
-│   ├── AddHikePage.xaml.cs  # Form submission, validation, database insertion
-│   ├── HikeListPage.xaml    # List of all hikes
-│   ├── HikeListPage.xaml.cs # Loads hikes from SQLite
-│   └── SettingsPage.xaml    # Placeholder settings UI
+│ ├── AddHikePage.xaml # Add Hike form UI
+│ ├── AddHikePage.xaml.cs # Form submission, validation, database insertion
+│ ├── HikeListPage.xaml # List of all hikes
+│ ├── HikeListPage.xaml.cs # Loads hikes from SQLite
+│ └── SettingsPage.xaml # Placeholder settings UI
 │
 ├── Models/
-│   ├── Hike.cs              # Hike data model
-│   └── Observation.cs       # Observation data model
+│ ├── Hike.cs # Hike data model
+│ └── Observation.cs # Observation data model
 │
 ├── Data/
-│   └── DbService.cs         # SQLite database service: CRUD operations
+│ └── DbService.cs # SQLite database service: CRUD operations
 │
 └── Resources/
-    └── Styles/              # Colors and style resources
+└── Styles/ # Colors and style resources
 
 Setup Instructions
 
@@ -90,9 +90,8 @@ Mac (for Mac Catalyst / iOS builds)
 
 Clone the repository
 
-git clone <repo-url>
+git clone
 cd MHikePrototype
-
 
 Build and run
 

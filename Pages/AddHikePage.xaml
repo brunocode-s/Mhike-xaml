@@ -1,37 +1,65 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:map="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
              x:Class="MHikePrototype.Pages.AddHikePage"
              Title="Add Hike">
-    <ScrollView>
-        <VerticalStackLayout Padding="20"
-                Spacing="15">
 
-            <Entry x:Name="NameEntry"
-                    Placeholder="Hike Name"/>
-            <Entry x:Name="LocationEntry"
-                    Placeholder="Location"/>
-            <DatePicker x:Name="DatePicker"/>
-            <Entry x:Name="ParkingEntry"
-                    Placeholder="Parking"/>
-            <Entry x:Name="LengthEntry"
-                    Placeholder="Length (km)"
-                    Keyboard="Numeric"/>
-            <Picker x:Name="DifficultyPicker"
-                    Title="Difficulty">
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Easy</x:String>
-                        <x:String>Moderate</x:String>
-                        <x:String>Hard</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
-            </Picker>
-            <Editor x:Name="DescriptionEditor"
-                    Placeholder="Description"/>
+        <ScrollView>
+                <VerticalStackLayout Padding="20"
+                                     Spacing="15">
 
-            <Button Text="Save Hike"
-                    Clicked="OnSaveClicked"/>
-        </VerticalStackLayout>
-    </ScrollView>
+                        <!--  Map Section -->
+                        <Border StrokeShape="RoundRectangle 15"
+                                StrokeThickness="0"
+                                BackgroundColor="#E0E0E0"
+                                HeightRequest="250">
+                                <Border.Shadow>
+                                        <Shadow Brush="Black"
+                                                Offset="0,2"
+                                                Radius="5"
+                                                Opacity="0.3"/>
+                                </Border.Shadow>
+                                <map:Map x:Name="HikeMap"
+                                         MapType="Street"
+                                         IsShowingUser="True"
+                                         MapClicked="OnMapClicked"/>
+                        </Border>
+
+                        <!--  Hike Input Fields -->
+                        <Entry x:Name="NameEntry"
+                               Placeholder="Hike Name"/>
+                        <Entry x:Name="LocationEntry"
+                               Placeholder="Location (auto-filled when tapping map)"/>
+                        <DatePicker x:Name="DatePicker"/>
+                        <Entry x:Name="ParkingEntry"
+                               Placeholder="Parking Info"/>
+                        <Entry x:Name="LengthEntry"
+                               Placeholder="Length (km)"
+                               Keyboard="Numeric"/>
+
+                        <Picker x:Name="DifficultyPicker"
+                                Title="Difficulty">
+                                <Picker.ItemsSource>
+                                        <x:Array Type="{x:Type x:String}">
+                                                <x:String>Easy</x:String>
+                                                <x:String>Moderate</x:String>
+                                                <x:String>Hard</x:String>
+                                        </x:Array>
+                                </Picker.ItemsSource>
+                        </Picker>
+
+                        <Editor x:Name="DescriptionEditor"
+                                Placeholder="Description"
+                                AutoSize="TextChanges"/>
+
+                        <!--  Save Button -->
+                        <Button Text="Save Hike"
+                                BackgroundColor="#4CAF50"
+                                TextColor="White"
+                                CornerRadius="10"
+                                Clicked="OnSaveClicked"/>
+
+                </VerticalStackLayout>
+        </ScrollView>
 </ContentPage>
