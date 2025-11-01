@@ -3,6 +3,7 @@ using MHikePrototype.Models;
 using Microsoft.Maui.Controls.Maps;
 using Microsoft.Maui.Maps;
 using System;
+using System.Diagnostics;
 
 namespace MHikePrototype.Pages
 {
@@ -27,7 +28,7 @@ namespace MHikePrototype.Pages
         {
             try
             {
-                // Check and request location permission
+                // Check current permission status
                 var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
 
                 if (status != PermissionStatus.Granted)
@@ -42,7 +43,6 @@ namespace MHikePrototype.Pages
 
                     if (location == null)
                     {
-                        // If no last known location, get current location
                         var request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(10));
                         location = await Geolocation.Default.GetLocationAsync(request);
                     }
@@ -52,47 +52,47 @@ namespace MHikePrototype.Pages
                         HikeMap.MoveToRegion(MapSpan.FromCenterAndRadius(
                             new Location(location.Latitude, location.Longitude),
                             Distance.FromKilometers(2)));
+                        await DisplayAlert("Success", "Map loaded with your location!", "OK");
                     }
                     else
                     {
-                        // No location available, use default
                         UseDefaultLocation();
                     }
                 }
                 else
                 {
-                    // Permission denied
                     await DisplayAlert("Location Permission",
-                        "Location permission is required to show your position on the map. Using default location.",
+                        $"Permission status: {status}\nPlease check app permissions in device settings.\nUsing default location.",
                         "OK");
                     UseDefaultLocation();
                 }
+
             }
-            catch (FeatureNotSupportedException)
+            catch (FeatureNotSupportedException ex)
             {
                 await DisplayAlert("Not Supported",
-                    "Location services are not supported on this device. Using default location.",
+                    "Location services are not supported on this device.",
                     "OK");
                 UseDefaultLocation();
             }
-            catch (FeatureNotEnabledException)
+            catch (FeatureNotEnabledException ex)
             {
                 await DisplayAlert("Location Disabled",
-                    "Please enable location services in your device settings. Using default location.",
+                    "Please enable location services in your device settings.",
                     "OK");
                 UseDefaultLocation();
             }
-            catch (PermissionException)
+            catch (PermissionException ex)
             {
                 await DisplayAlert("Permission Error",
-                    "Location permission is required. Using default location.",
+                    "Location permission is required.",
                     "OK");
                 UseDefaultLocation();
             }
             catch (Exception ex)
             {
                 await DisplayAlert("Map Error",
-                    $"Unable to get your location: {ex.Message}\nUsing default location.",
+                    $"Error: {ex.Message}",
                     "OK");
                 UseDefaultLocation();
             }

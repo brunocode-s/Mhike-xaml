@@ -46,27 +46,14 @@ namespace MHikePrototype
         {
             try
             {
-                Debug.WriteLine("========================================");
-                Debug.WriteLine("Button clicked!");
-                Debug.WriteLine($"Navigating to: {nameof(AddHikePage)}");
-                Debug.WriteLine($"Shell.Current is null: {Shell.Current == null}");
-
                 await Shell.Current.GoToAsync(nameof(AddHikePage));
-
-                Debug.WriteLine("Navigation completed successfully!");
-                Debug.WriteLine("========================================");
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("========================================");
-                Debug.WriteLine($"ERROR during navigation: {ex.Message}");
-                Debug.WriteLine($"Exception type: {ex.GetType().Name}");
-                Debug.WriteLine($"Stack trace: {ex.StackTrace}");
                 if (ex.InnerException != null)
                 {
                     Debug.WriteLine($"Inner exception: {ex.InnerException.Message}");
                 }
-                Debug.WriteLine("========================================");
 
                 await DisplayAlert("Navigation Error", $"{ex.Message}", "OK");
             }
@@ -76,12 +63,10 @@ namespace MHikePrototype
         {
             try
             {
-                Debug.WriteLine($"Navigating to: {nameof(HikeListPage)}");
                 await Shell.Current.GoToAsync(nameof(HikeListPage));
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"ERROR navigating to HikeListPage: {ex.Message}");
                 await DisplayAlert("Navigation Error", ex.Message, "OK");
             }
         }
@@ -90,12 +75,10 @@ namespace MHikePrototype
         {
             try
             {
-                Debug.WriteLine($"Navigating to: {nameof(SettingsPage)}");
                 await Shell.Current.GoToAsync(nameof(SettingsPage));
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"ERROR navigating to SettingsPage: {ex.Message}");
                 await DisplayAlert("Navigation Error", ex.Message, "OK");
             }
         }
